@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصفحة الرئيسية</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #e4c661;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .login-button {
+      background-color: #5292f1;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+    .login-button:hover {
+      background-color: #0f72c7;
+      transform: scale(1.05);
+    }
+    .login-button:active {
+      background-color: #17009a;
+    }
+    main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .product {
+      background-color: rgb(254, 235, 194);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .product img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    .product a {
+      color: #4c8caf;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      color: #000;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .add-to-cart {
+      background-color: #5292f1;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .add-to-cart:hover {
+      background-color: #0f72c7;
+    }
+
+    /* زر السلة */
+    #cart {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #9bda99;
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: grab;
+      font-size: 1.5rem;
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      user-select: none;
+    }
+    #cart:active {
+      cursor: grabbing;
+    }
+
+    /* نافذة السلة */
+    #cart-items {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      background-color: white;
+      color: #333;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: none;
+      max-height: 300px;
+      overflow-y: auto;
+      width: 200px;
+    }
+
+    #cart-items h4 {
+      margin: 0 0 10px;
+    }
+
+    #cart-items ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #cart-items li {
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #cart-items button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MOK.com</h1>
+    <a href="login-container.html" class="login-button">تسجيل الدخول</a>
+  </header>
+
+  <main>
+    <div class="product">
+      <img src="C:\Users\reras\OneDrive\Desktop\MOKPC\img\4060.jpg" alt="Zotac RTX 4060S">
+      <a href="product-details.html?product=سماعات">Zotac RTX 4060</a>
+      <div class="price">السعر: 130 ريال</div>
+      <button class="add-to-cart" onclick="addToCart('Zotac RTX 4060', 150)">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="C:\Users\reras\OneDrive\Desktop\MOKPC\img\4060 solo.jpg" alt="Zotac RTX 4060 solo">
+      <a href="product-details.html?product=قميص">Zotac RTX 4060 solo</a>
+      <div class="price">السعر: 112 ريال</div>
+      <button class="add-to-cart" onclick="addToCart('Zotac RTX 4060 solo', 80)">أضف إلى السلة</button>
+    </div>
+    <div class="product">
+      <img src="C:\Users\reras\OneDrive\Desktop\MOKPC\img\4060 b.jpg" alt="palit RTX 4060">
+      <a href="product-details.html?product=رواية">Palit RTX 4060</a>
+      <div class="price">السعر: 125 ريال</div>
+      <button class="add-to-cart" onclick="addToCart('palit RTX 4060', 40)">أضف إلى السلة</button>
+    </div>
+  </main>
+
+  <!-- سلة التسوق -->
+  <div id="cart" onclick="toggleCart()">🛒</div>
+  <div id="cart-items">
+    <h4>منتجات السلة</h4>
+    <ul id="cart-list"></ul>
+    <button onclick="checkout()">إتمام الشراء</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(product, price) {
+      cart.push({ product, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById("cart-list");
+      cartList.innerHTML = "";
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.product} - ${item.price} ريال`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "حذف";
+        deleteButton.onclick = () => removeFromCart(index);
+
+        li.appendChild(deleteButton);
+        cartList.appendChild(li);
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    function toggleCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.style.display = cartItems.style.display === "none" ? "block" : "none";
+    }
+
+    function checkout() {
+      alert("إتمام الشراء");
+    }
+
+    // سحب زر السلة
+    const cartButton = document.getElementById("cart");
+    let isDragging = false, offsetX = 0, offsetY = 0;
+
+    cartButton.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - cartButton.offsetLeft;
+      offsetY = e.clientY - cartButton.offsetTop;
+      cartButton.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        let x = e.clientX - offsetX;
+        let y = e.clientY - offsetY;
+
+        const maxX = window.innerWidth - cartButton.offsetWidth;
+        const maxY = window.innerHeight - cartButton.offsetHeight;
+
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
+
+        cartButton.style.left = x + "px";
+        cartButton.style.top = y + "px";
+
+        const cartItems = document.getElementById("cart-items");
+        cartItems.style.left = x + "px";
+        cartItems.style.bottom = (window.innerHeight - y + 60) + "px"; // لضبط المسافة أعلى الزر
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDragging = false;
+      cartButton.style.cursor = "grab";
+    });
+  </script>
+</body>
+</html>
+
+
+
+
 

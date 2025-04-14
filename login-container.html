@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .login-button:hover {
+      background-color: #45a049;
+    }
+
+    .forgot-password {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .forgot-password a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>تسجيل الدخول</h2>
+    <form action="index.html" method="GET">
+      <input type="email" class="input-field" placeholder="البريد الإلكتروني" required>
+      <input type="password" class="input-field" placeholder="كلمة المرور" required>
+      <button type="submit" class="login-button">دخول</button>
+    </form>
+    <div class="forgot-password">
+      <a href="https://accounts.google.com/lifecycle/steps/signup/name?continue=https://www.google.com?hl%3Den-US&ddm=1&dsh=S1057615400:1744568481201273&ec=GAlA8wE&flowEntry=SignUp&flowName=GlifWebSignIn&hl=en&TL=ADBLaQBSqCl8_Xx3SZqaS3huy2r_arwlsIcBk3TeQHGYQL1oPZliTlTGrVJax1fx">نسيت كلمة المرور؟</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
